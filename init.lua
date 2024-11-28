@@ -625,6 +625,7 @@ require('lazy').setup({
         css_variables = {},
         eslint = {},
         jsonls = {},
+        phpactor = {},
 
         --
 
@@ -658,6 +659,9 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
         'tailwindcss',
+        'html',
+        'intelephense',
+        'cssls',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -710,6 +714,7 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        php = { 'phpcbf', 'php-cs-fixer' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -743,6 +748,7 @@ require('lazy').setup({
             'rafamadriz/friendly-snippets',
             config = function()
               require('luasnip.loaders.from_vscode').lazy_load()
+              require('luasnip').filetype_extend('php', { 'html' })
             end,
           },
         },
@@ -917,6 +923,7 @@ require('lazy').setup({
         'sql',
         'typescript',
         'javascript',
+        'php',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
@@ -956,6 +963,7 @@ require('lazy').setup({
   require 'kickstart.plugins.toggleterm',
   require 'kickstart.plugins.bufferline',
   require 'kickstart.plugins.lualine',
+  require 'kickstart.plugins.VimBeGood',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
